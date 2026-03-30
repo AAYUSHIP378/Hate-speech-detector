@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>🚫 MuRIL Hate Speech Detection</h2>
+<p>Multilingual AI • FastAPI</p>
+
+<form action="/analyze" method="post">
+    <textarea name="text" placeholder="Enter text here..."></textarea>
+    <button type="submit">Analyze</button>
+    
+</form>
+<a href="/login">
+    <button style="background:rgb(46, 218, 230);">🔐 Admin Login</button>
+</a>
+
+{% endblock %}

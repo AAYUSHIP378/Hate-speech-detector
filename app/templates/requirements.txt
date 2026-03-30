@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+torch
+transformers
+sentencepiece
+tokenizers
+tiktoken
+langdetect
+python-multipart
+jinja2

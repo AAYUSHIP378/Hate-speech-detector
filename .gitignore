@@ -1,0 +1,8 @@
+venv/
+model/
+Git/ 
+git/    ❌ ADD THIS
+*.exe
+*.db
+__pycache__/
+*.pyc

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<h2>🧠 Result</h2>
+
+<p><b>Text:</b> {{ result.text }}</p>
+
+<p style="font-size:20px; font-weight:bold;
+    color: {% if result.prediction == 'Hate Speech' %}red{% else %}green{% endif %};">
+    {{ result.prediction }}
+</p>
+
+<p><b>Confidence:</b> {{ result.confidence }}%</p>
+<p><b>Action:</b> {{ result.action }}</p>
+
+<br>
+<a href="/">🔙 Try Again</a>
+
+{% endblock %}

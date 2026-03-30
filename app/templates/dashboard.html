@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<h2>📊 Dashboard</h2>
+
+<!-- Stats -->
+<div style="display:flex; gap:10px; margin-bottom:20px; justify-content:center;">
+    <div style="background:#4facfe;color:white;padding:10px;border-radius:8px;">
+        Total: {{ total }}
+    </div>
+    <div style="background:red;color:white;padding:10px;border-radius:8px;">
+        Hate: {{ hate }}
+    </div>
+    <div style="background:green;color:white;padding:10px;border-radius:8px;">
+        Non-Hate: {{ non_hate }}
+    </div>
+</div>
+
+<!-- ✅ FIXED GRAPH SIZE -->
+<div style="width:250px; height:250px; margin:auto;">
+    <canvas id="myChart"></canvas>
+</div>
+
+<br>
+
+<table>
+<tr>
+    <th>ID</th>
+    <th>Text</th>
+    <th>Prediction</th>
+    <th>Action</th>
+</tr>
+
+{% for r in rows %}
+<tr>
+    <td>{{ r.id }}</td>
+    <td>{{ r.text }}</td>
+
+    <td style="color: {% if r.prediction == 'Hate Speech' %}red{% else %}green{% endif %}">
+        {{ r.prediction }}
+    </td>
+
+    <td style="color:
+        {% if r.action == 'Block' %}red
+        {% elif r.action == 'Review' %}orange
+        {% else %}green
+        {% endif %};
+    ">
+        {{ r.action }}
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+
+<a href="/">🔙 Home</a>
+
+<!-- ✅ FIXED GRAPH SCRIPT -->
+<script>
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Hate', 'Non-Hate'],
+        datasets: [{
+            data: [{{ hate }}, {{ non_hate }}],  // ❌ safe hata diya
+            backgroundColor: ['#ff4d4d', '#28a745']
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true
+    }
+});
+</script>
+
+{% endblock %}
