@@ -3,6 +3,7 @@
 from app.config import LABELS, MODEL_USED
 from app.utils import detect_language, rule_based_hate
 from app.hate_types import detect_hate_type
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 # ---------------- MODEL PATH ----------------
 MODEL_PATH = "model/resumed_final_from_65088"
